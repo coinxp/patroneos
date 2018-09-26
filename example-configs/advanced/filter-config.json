@@ -7,7 +7,7 @@
     "nodeosUrl": "localhost",
     "nodeosPort": "8888",
 
-    "contractBlackList": {
+    "contractWhiteList": {
         "currency": true
     },
     "maxSignatures": 10,

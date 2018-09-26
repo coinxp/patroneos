@@ -170,7 +170,7 @@ func validateMaxSignatures(next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
-// validateContract checks that the transaction does not act on a blacklisted contract.
+// validateContract checks that the transaction does not act on a non-whitelisted contract.
 func validateContract(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
