@@ -19,7 +19,6 @@ type Config struct {
 	NodeosProtocol     string            `json:"nodeosProtocol"`
 	NodeosURL          string            `json:"nodeosUrl"`
 	NodeosPort         string            `json:"nodeosPort"`
-	ContractBlackList  map[string]bool   `json:"contractBlackList"`
 	ContractWhiteList  map[string]bool   `json:"contractWhiteList"`
 	MaxSignatures      int               `json:"maxSignatures"`
 	MaxTransactionSize int               `json:"maxTransactionSize"`

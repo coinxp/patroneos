@@ -13,7 +13,7 @@ nodeosProtocol -- the protocol nodeos listens on (HTTP vs HTTPS)
 nodeosUrl      -- the url nodeos is hosted at. This can be localhost if running Patroneos on the same machine as nodeos
 nodeosPort     -- the port nodeos listens on. (defaults to 8888)
 
-contractBlackList  -- an object that defines which contracts to blacklist. Should use the format contractName: true
+contractBlackList  -- an object that defines which contracts to whitelist. Should use the format contractName: true
 maxSignatures      -- an integer that defines the maximum number of signatures a transaction can have
 maxTransactionSize -- an integer in bytes that defines the maximum size of a transaction payload
 

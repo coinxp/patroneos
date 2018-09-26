@@ -48,7 +48,7 @@ To setup Patroneos in the simple configuration, a user just needs nodeos running
     * This middleware checks that the number of signatures on the transaction are not greater than the defined maximum.
 
 * validateContract
-    * This middleware checks that the contract is not in a list of blacklisted contracts.
+    * This middleware checks that the contract is in a list of whitelisted contracts.
 
 * validateTransactionSize
     * This middleware checks that the size of the transaction data does not exceed the defined maximum.
