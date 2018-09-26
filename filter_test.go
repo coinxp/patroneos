@@ -22,6 +22,7 @@ type TestStruct struct {
 func setConfig() {
 	appConfig = Config{}
 	appConfig.ContractBlackList = map[string]bool{"currency": true}
+	appConfig.ContractWhiteList = map[string]bool{"tokens": true}
 	appConfig.MaxSignatures = 1
 	appConfig.MaxTransactionSize = 50
 	appConfig.MaxTransactions = 2
@@ -152,8 +153,15 @@ func TestValidateContract(t *testing.T) {
 	validTransaction.Actions = make([]Action, 1)
 	validTransaction.Actions[0] = validAction
 
+	nonWhitelistTransaction := invalidTransaction
+	nonWhitelistAction := invalidAction
+	nonWhitelistAction.Code = "na"
+	nonWhitelistTransaction.Actions = make([]Action, 1);
+	nonWhitelistTransaction.Actions[0] = nonWhitelistAction
+
 	invalidBody, _ := json.Marshal(invalidTransaction)
 	validBody, _ := json.Marshal(validTransaction)
+	nonWhitelistBody, _ := json.Marshal(nonWhitelistTransaction)
 	tests := []TestStruct{
 		{
 			description:  "invalid",
@@ -168,6 +176,13 @@ func TestValidateContract(t *testing.T) {
 			body:         validBody,
 			expectedBody: "SUCCESS\n",
 			expectedCode: 200,
+		},
+		{
+			description:  "invalid",
+			url:          "/",
+			body:         nonWhitelistBody,
+			expectedBody: "{\"message\":\"NON_WHITELISTED_CONTRACT\",\"code\":400}",
+			expectedCode: 400,
 		},
 	}
 

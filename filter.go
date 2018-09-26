@@ -182,9 +182,14 @@ func validateContract(next http.HandlerFunc) http.HandlerFunc {
 
 		for _, transaction := range transactions {
 			for _, action := range transaction.Actions {
-				_, exists := appConfig.ContractBlackList[action.Code]
-				if exists {
+				_, existsBlacklist := appConfig.ContractBlackList[action.Code]
+				if existsBlacklist {
 					logFailure("BLACKLISTED_CONTRACT", w, r, 0)
+					return
+				}
+				_, existsWhitelist := appConfig.ContractWhiteList[action.Code]
+				if !existsWhitelist {
+					logFailure("NON_WHITELISTED_CONTRACT", w, r, 0)
 					return
 				}
 			}
